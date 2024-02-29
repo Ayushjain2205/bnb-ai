@@ -33,7 +33,10 @@ const AIMessage = ({
           <img src="/icons/tron.svg" className="h-[16px] w-[16px]" alt="AI" />
         </div>
         <div className="flex flex-col gap-[12px] flex-grow">
-          <ReactMarkdown className="text-[16px]">{message}</ReactMarkdown>
+          {/* <ReactMarkdown className="text-[16px]">
+            {message}
+          </ReactMarkdown> */}
+          {message}
           <div className="mt-[20px]">
             {ChildComponent && <ChildComponent />}
           </div>

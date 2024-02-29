@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 import { ModeContext } from "../contexts/ModeContext";
 
 export default function App({ Component, pageProps }) {
-  const [mode, setMode] = useState("normal");
+  const [mode, setMode] = useState("light");
   return (
     <ModeContext.Provider value={{ mode, setMode }}>
       <Component {...pageProps} />
