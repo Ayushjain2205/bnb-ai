@@ -1,8 +1,15 @@
+import React, { useContext } from "react";
+import { ModeContext } from "../../contexts/ModeContext";
+
 const UserMessage = ({ message }) => {
+  const { mode } = useContext(ModeContext);
+  const image =
+    mode === "dev" ? "/images/user-message.svg" : "/images/user-message.svg";
+
   return (
     <div className="flex flex-row items-start gap-[16px] pb-[16px] mb-[16px]">
-      <img src="/images/user-message.svg" className="h-[36px]" alt="User" />
-      <p className="text-[20px] font-bold">{message}</p>
+      <img src={image} className="h-[36px]" alt="User" />
+      <p className="text-[16px] font-bold">{message}</p>
     </div>
   );
 };

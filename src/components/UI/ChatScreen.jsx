@@ -1,9 +1,32 @@
 import React, { useState, useRef, useEffect } from "react";
 import AIMessage from "../Messages/AIMessage";
 import UserMessage from "../Messages/UserMessage";
+import {
+  GenerateNFT,
+  DisplayNFT,
+  SmartContract,
+  Graph,
+  WalletHealth,
+} from "../Templates";
+import Loader from "../Functional/Loader";
 
 const ChatScreen = ({ messages, setMessages }) => {
+  const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [mintMessageIndex, setMintMessageIndex] = useState(0);
+
+  const mintingMessages = [
+    {
+      text: "Hey, sure. Let’s generate a NFT for you. Enter a prompt for your NFT.",
+      ChildComponent: null,
+    },
+    {
+      text: "Here is your NFT. Enter **MINT** to Confirm NFT",
+      ChildComponent: GenerateNFT,
+    },
+    { text: "Input Name : '' & Price : '' for your NFT", ChildComponent: null },
+    { text: "Yayyy, you just minted a NFT!", ChildComponent: DisplayNFT },
+  ];
 
   const messagesEndRef = useRef(null);
 
@@ -13,15 +36,174 @@ const ChatScreen = ({ messages, setMessages }) => {
     }
   }, [messages]);
 
-  const svgFillColor = inputValue ? "#D34D3E" : "#E7E9EB";
+  const svgFillColor = inputValue ? "#16284B" : "#E7E9EB";
+
+  const mintNFT = () => {
+    // Check to avoid index out of bound
+    if (mintMessageIndex < mintingMessages.length) {
+      setLoading(true);
+
+      setTimeout(() => {
+        // Update the messages
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            sender: "ai",
+            text: mintingMessages[mintMessageIndex].text,
+            showResource: false,
+            showPrompt: false,
+            ChildComponent: mintingMessages[mintMessageIndex].ChildComponent,
+          },
+        ]);
+
+        // Increment the message index for the next interaction
+        setMintMessageIndex((prevIndex) => prevIndex + 1);
+
+        // Deactivate the loader
+        setLoading(false);
+      }, 2000);
+    } else {
+      // Optionally, reset the minting process or handle completion logic here
+      console.log("Minting process complete!");
+    }
+  };
+
+  const smartContract = () => {
+    const relatedPrompts = [
+      { prompt: "Generate a ERC 1155 smart contract" },
+      { prompt: "Generate a ERC 721 smart contract" },
+    ];
+    const resources = [
+      { name: "How does a smart contract work?" },
+      { name: "What is Solidity?" },
+      { name: "How to deploy a smart contract?" },
+    ];
+
+    // Set loading to true to show the loader
+    setLoading(true);
+
+    setTimeout(() => {
+      // Update the messages
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          sender: "ai",
+          text: "To create an ERC-20 token called **Boba Coin** for deployment on the XinFin Network (XDC) blockchain, you'll need to write a Solidity smart contract. Below is a basic example of a Solidity smart contract for an ERC-20 token. You can customize and expand upon it as needed:",
+          showResource: true,
+          showPrompt: true,
+          relatedPrompts: relatedPrompts,
+          resources: resources,
+          ChildComponent: SmartContract,
+        },
+      ]);
+
+      // Set loading to false to hide the loader
+      setLoading(false);
+    }, 5000); // 5000ms = 5 seconds
+  };
+
+  const dev = async (userMessage) => {
+    const relatedPrompts = [
+      { prompt: "How to connect to XDC Blockchain" },
+      { prompt: "How to deploy a smart contract?" },
+    ];
+    const resources = [
+      { name: "XDC Docs" },
+      { name: "Decrypt.co" },
+      { name: "Thirdweb" },
+    ];
+    try {
+      setLoading(true);
+      const response = await fetch("/api/getAnswer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query: userMessage }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            sender: "ai",
+            text: data.message,
+            showResource: true,
+            showPrompt: true,
+            relatedPrompts: relatedPrompts,
+            resources: resources,
+            ChildComponent: null,
+          },
+        ]);
+      } else {
+        console.error("API request failed", await response.text());
+      }
+    } catch (error) {
+      console.error("An error occurred", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const graph = () => {
+    // Activate the loader
+    setLoading(true);
+
+    // Use setTimeout to introduce a delay
+    setTimeout(() => {
+      // Update the messages
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          sender: "ai",
+          text: "This is a graphical representation of XDC token performance in the past one month.",
+          showResource: false,
+          showPrompt: false,
+          ChildComponent: Graph,
+        },
+      ]);
+
+      // Deactivate the loader
+      setLoading(false);
+    }, 3000); // 4000ms = 4 seconds
+  };
+
+  const walletHealth = () => {
+    // Activate the loader
+    setLoading(true);
+
+    // Use setTimeout to introduce a delay
+    setTimeout(() => {
+      // Update the messages
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          sender: "ai",
+          text: "Let's check your wallet health!",
+          showResource: false,
+          showPrompt: false,
+          ChildComponent: WalletHealth,
+        },
+      ]);
+
+      // Deactivate the loader
+      setLoading(false);
+    }, 4000); // 4000ms = 4 seconds
+  };
 
   const handleSendMessage = () => {
     if (inputValue.trim()) {
       setMessages((prevMessages) => [
         ...prevMessages,
         { sender: "user", text: inputValue },
-        { sender: "ai", text: "AI response for: " + inputValue }, // This is a dummy response
       ]);
+      dev(inputValue);
+      //mintNFT();
+      //smartContract();
+      //graph();
+      //walletHealth();
       setInputValue("");
     }
   };
@@ -33,11 +215,26 @@ const ChatScreen = ({ messages, setMessages }) => {
           if (message.sender === "user") {
             return <UserMessage key={index} message={message.text} />;
           } else if (message.sender === "ai") {
-            return <AIMessage key={index} message={message.text} />;
+            return (
+              <AIMessage
+                key={index}
+                message={message.text}
+                showResource={message.showResource}
+                showPrompt={message.showPrompt}
+                ChildComponent={message.ChildComponent}
+                relatedPrompts={message.relatedPrompts}
+                resources={message.resources}
+              />
+            );
           } else {
             return null;
           }
         })}
+        {loading && (
+          <div className="flex justify-center items-center p-4">
+            <Loader />
+          </div>
+        )}
         <div ref={messagesEndRef}></div>
       </div>
       <div className="flex-none">
