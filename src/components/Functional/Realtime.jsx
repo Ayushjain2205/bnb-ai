@@ -40,7 +40,7 @@ const Realtime = ({ isDevMode }) => {
         {data[currentIndex][0]}&nbsp; :
       </p>
 
-      <p className={`text-[16px] font-bold  text-primary`}>
+      <p className={`text-[16px] font-bold text-primary`}>
         &nbsp; {data[currentIndex][1]}
       </p>
     </div>
