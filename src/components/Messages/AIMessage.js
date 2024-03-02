@@ -27,7 +27,7 @@ const AIMessage = ({
     <div className="pb-[48px] mb-[48px] border-b border-[#E7E9EB]">
       <div className="flex flex-row items-start gap-[16px]">
         <div
-          className="flex flex-col items-center justify-center h-[36px] w-[36px] rounded-full flex-shrink-0"
+          className="flex flex-col items-center justify-center h-[36px] w-[36px] rounded-[100px] flex-shrink-0"
           style={{ backgroundColor: backgroundColor }}
         >
           <img src="/icons/tron.svg" className="h-[16px] w-[16px]" alt="AI" />

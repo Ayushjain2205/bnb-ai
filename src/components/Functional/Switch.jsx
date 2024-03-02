@@ -23,9 +23,9 @@ function Switch() {
           checked={checked}
           onChange={handleToggle}
         />
-        <div className="w-[81px] h-[40px] bg-primary rounded-full shadow-inner"></div>
+        <div className="w-[81px] h-[40px] bg-primary rounded-[100px] shadow-inner"></div>
         <div
-          className={`flex flex-column justify-center items-center absolute inset-y-[4px] left-[4px] w-[33px] h-[33px] rounded-full shadow transition-transform duration-300 transform ${
+          className={`flex flex-column justify-center items-center absolute inset-y-[4px] left-[4px] w-[33px] h-[33px] rounded-[100px] shadow transition-transform duration-300 transform ${
             checked
               ? "translate-x-[40px] bg-[#ffffff]"
               : "translate-x-0 bg-[#ffffff]"

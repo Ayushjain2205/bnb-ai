@@ -1,7 +1,6 @@
 import React from "react";
 import { GoldRushProvider } from "@covalenthq/goldrush-kit";
 import "@covalenthq/goldrush-kit/styles.css";
-// import styles from "../../styles/styles.module.css";
 
 const GoldrushTemplate = ({ children }) => {
   return (

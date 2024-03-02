@@ -10,7 +10,7 @@ const Navbar = () => {
         <button className="btn btn-primary rounded-none bg-primary h-[48px] w-[192px] font-bold text-white">
           Connect wallet
         </button>
-        <div className="flex flex-row items-center justify-center rounded-full bg-primary h-[48px] w-[48px]">
+        <div className="flex flex-row items-center justify-center rounded-[100px] bg-primary h-[48px] w-[48px]">
           <img src="/icons/dude.svg" alt="" />
         </div>
       </div>
