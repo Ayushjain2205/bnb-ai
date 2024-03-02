@@ -5,6 +5,7 @@ import {
   AddressActivityListView,
   NFTWalletTokenListView,
   TransactionReceiptView,
+  GasCard,
 } from "@covalenthq/goldrush-kit";
 import GoldrushTemplate from "../Functional/GoldrushTemplate";
 
@@ -39,10 +40,11 @@ const TokenList = () => {
           "bnb-opbnb-mainnet",
         ]}
       /> */}
-      <TransactionReceiptView
+      {/* <TransactionReceiptView
         chain_name="eth-mainnet"
         tx_hash="0xc3621bc944e80a3f53dc36064ba16f97be0710ba79cdc3b39c456a6ceb596ee7"
-      />
+      /> */}
+      <GasCard chain_name="eth-mainnet" event_type="erc20" />
     </GoldrushTemplate>
   );
 };

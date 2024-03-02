@@ -8,6 +8,7 @@ import {
   Graph,
   WalletHealth,
   TokenList,
+  Gas,
 } from "../Templates";
 import Loader from "../Functional/Loader";
 
@@ -185,7 +186,7 @@ const ChatScreen = ({ messages, setMessages }) => {
           text: "Let's check your wallet health!",
           showResource: false,
           showPrompt: false,
-          ChildComponent: TokenList,
+          ChildComponent: Gas,
         },
       ]);
 

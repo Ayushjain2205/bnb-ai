@@ -50,7 +50,7 @@ const SideBar = ({ onClearMessages }) => {
         <div className="text-[24px] text-primary font-bold mt-[48px]">
           Explore
         </div>
-        <details className="collapse w-[270px] px-0 border-b-2 border-[#E7E9EB] rounded-none">
+        <details className="collapse w-[270px] mt-[12px] px-0 border-b-2 border-[#E7E9EB] rounded-none">
           <summary className="collapse-title pt-[12px] items-center text-xl font-bold min-h-[48px] px-0 py-0">
             <div className="flex flex-row justify-between">
               <span className="text-secondary text-[16px]">NFTs</span>
@@ -91,7 +91,7 @@ const SideBar = ({ onClearMessages }) => {
             </div>
           </div>
         </details>
-        <details className="collapse w-[270px] px-0 border-b-2 border-[#E7E9EB] rounded-none">
+        <details className="collapse w-[270px] mt-[12px] px-0 border-b-2 border-[#E7E9EB] rounded-none">
           <summary className="collapse-title pt-[12px] items-center text-xl font-bold min-h-[48px] px-0 py-0">
             <div className="flex flex-row justify-between">
               <span className="text-secondary text-[16px]">Smart Contract</span>
@@ -132,7 +132,7 @@ const SideBar = ({ onClearMessages }) => {
             </div>
           </div>
         </details>
-        <details className="collapse w-[270px] px-0 border-b-2 border-[#E7E9EB] rounded-none">
+        <details className="collapse w-[270px] mt-[12px] px-0 border-b-2 border-[#E7E9EB] rounded-none">
           <summary className="collapse-title pt-[12px] items-center text-xl font-bold min-h-[48px] px-0 py-0">
             <div className="flex flex-row justify-between">
               <span className="text-secondary text-[16px]">

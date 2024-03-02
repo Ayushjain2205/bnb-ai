@@ -4,6 +4,7 @@ import SmartContract from "./SmartContract";
 import Graph from "./Graph";
 import WalletHealth from "./WalletHealth";
 import TokenList from "./TokenList";
+import Gas from "./GasCard";
 
 export {
   DisplayNFT,
@@ -12,4 +13,5 @@ export {
   Graph,
   WalletHealth,
   TokenList,
+  Gas,
 };
