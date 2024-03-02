@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const Realtime = ({ isDevMode }) => {
   const [data, setData] = useState([
-    ["XDC/USD", "$ 0.049"],
+    ["BNB/USD", "$ 0.049"],
     ["Total Accounts", "214,476"],
     ["Transactions count", "44,761,827"],
     ["Block height", "55,435,720"],
