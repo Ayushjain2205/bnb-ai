@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "@covalenthq/goldrush-kit": "^0.4.7",
+    "@thirdweb-dev/react": "^4.4.11",
+    "@thirdweb-dev/sdk": "^4.0.38",
     "axios": "^1.6.7",
+    "ethers": "^5.7.2",
     "next": "14.1.0",
     "react": "^18",
     "react-code-blocks": "^0.1.6",
