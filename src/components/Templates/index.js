@@ -5,6 +5,7 @@ import Graph from "./Graph";
 import WalletHealth from "./WalletHealth";
 import TokenList from "./TokenList";
 import Gas from "./GasCard";
+import TokenTransfers from "./TokenTransfers";
 
 export {
   DisplayNFT,
@@ -14,4 +15,5 @@ export {
   WalletHealth,
   TokenList,
   Gas,
+  TokenTransfers,
 };
