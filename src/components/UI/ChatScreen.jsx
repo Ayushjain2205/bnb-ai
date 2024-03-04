@@ -13,11 +13,10 @@ import {
 import Loader from "../Functional/Loader";
 import { ModeContext } from "../../contexts/ModeContext";
 
-const ChatScreen = ({ messages, setMessages }) => {
+const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
   const { mode } = useContext(ModeContext);
 
   const [loading, setLoading] = useState(false);
-  const [inputValue, setInputValue] = useState("");
   const [mintMessageIndex, setMintMessageIndex] = useState(0);
 
   const mintingMessages = [

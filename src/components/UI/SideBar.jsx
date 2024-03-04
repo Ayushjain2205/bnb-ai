@@ -1,7 +1,7 @@
 import React from "react";
 import Switch from "../Functional/Switch";
 
-const SideBar = ({ onClearMessages }) => {
+const SideBar = ({ onClearMessages, onPropmtClick }) => {
   return (
     <div className="flex flex-col min-w-[294px] max-w-[294px]: pr-[24px] h-full overflow-y-scroll border-r-[3px] border-[#E7E9EB]">
       <div className="flex-1 overflow-y-scroll">
@@ -73,8 +73,11 @@ const SideBar = ({ onClearMessages }) => {
           </summary>
           <div className="collapse-content px-0">
             <div className="flex flex-col gap-[4px]">
-              <div className="flex flex-row items-center h-[36px]">
-                <span className="text-[14px] text-[#7A7A7A] font-medium">
+              <div className="flex flex-row items-center h-[36px] cursor-pointer">
+                <span
+                  onClick={() => onPropmtClick("I want to generate a NFT")}
+                  className="text-[14px] text-[#7A7A7A] font-medium"
+                >
                   I want to generate a NFT
                 </span>
               </div>
