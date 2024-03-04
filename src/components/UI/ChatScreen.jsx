@@ -44,7 +44,7 @@ const ChatScreen = ({ messages, setMessages }) => {
   const svgFillColor = inputValue
     ? mode === "light"
       ? "#F3BA2F"
-      : "#16284B"
+      : "#35363B"
     : "#E7E9EB";
 
   const mintNFT = () => {
