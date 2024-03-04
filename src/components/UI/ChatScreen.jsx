@@ -193,7 +193,7 @@ const ChatScreen = ({ messages, setMessages }) => {
           text: "Let's check your wallet health!",
           showResource: false,
           showPrompt: false,
-          ChildComponent: Gas,
+          ChildComponent: WalletHealth,
         },
       ]);
 

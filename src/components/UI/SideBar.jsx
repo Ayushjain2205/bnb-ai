@@ -3,7 +3,7 @@ import Switch from "../Functional/Switch";
 
 const SideBar = ({ onClearMessages }) => {
   return (
-    <div className="flex flex-col min-w-[294px] pr-[24px] h-full overflow-y-scroll border-r-[3px] border-[#E7E9EB]">
+    <div className="flex flex-col min-w-[294px] max-w-[294px]: pr-[24px] h-full overflow-y-scroll border-r-[3px] border-[#E7E9EB]">
       <div className="flex-1 overflow-y-scroll">
         <details className="collapse w-[270px] px-0" open>
           <summary className="collapse-title text-xl font-bold px-0">
@@ -31,17 +31,17 @@ const SideBar = ({ onClearMessages }) => {
             <div className="flex flex-col gap-[8px]">
               <div className="flex flex-row items-center h-[48px] border-b-[2px] border-[#E7E9EB]">
                 <span className="text-[16px] text-[#7A7A7A]">
-                  Chat historyChat historyChat history
+                  Show me the performance of bnb
                 </span>
               </div>
               <div className="flex flex-row items-center h-[48px] border-b-[2px] border-[#E7E9EB]">
                 <span className="text-[16px] text-[#7A7A7A]">
-                  Chat historyChat historyChat history
+                  What is the right time to bridge
                 </span>
               </div>
               <div className="flex flex-row items-center h-[48px] border-b-[2px] border-[#E7E9EB]">
                 <span className="text-[16px] text-[#7A7A7A]">
-                  Chat historyChat historyChat history
+                  Check wallet health of ..
                 </span>
               </div>
             </div>
