@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import AIMessage from "../Messages/AIMessage";
 import UserMessage from "../Messages/UserMessage";
 import {
@@ -11,8 +11,11 @@ import {
   Gas,
 } from "../Templates";
 import Loader from "../Functional/Loader";
+import { ModeContext } from "../../contexts/ModeContext";
 
 const ChatScreen = ({ messages, setMessages }) => {
+  const { mode } = useContext(ModeContext);
+
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [mintMessageIndex, setMintMessageIndex] = useState(0);
@@ -38,7 +41,11 @@ const ChatScreen = ({ messages, setMessages }) => {
     }
   }, [messages]);
 
-  const svgFillColor = inputValue ? "#16284B" : "#E7E9EB";
+  const svgFillColor = inputValue
+    ? mode === "light"
+      ? "#F3BA2F"
+      : "#16284B"
+    : "#E7E9EB";
 
   const mintNFT = () => {
     // Check to avoid index out of bound
