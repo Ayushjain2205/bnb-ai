@@ -250,6 +250,29 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
     }, 4000); // 4000ms = 4 seconds
   };
 
+  const showTransaction = () => {
+    // Activate the loader
+    setLoading(true);
+
+    // Use setTimeout to introduce a delay
+    setTimeout(() => {
+      // Update the messages
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          sender: "ai",
+          text: "This is the transaction breakdown for the specified transcation hash:",
+          showResource: false,
+          showPrompt: false,
+          ChildComponent: TransactionReceipt,
+        },
+      ]);
+
+      // Deactivate the loader
+      setLoading(false);
+    }, 4000); // 4000ms = 4 seconds
+  };
+
   const handleSendMessage = () => {
     if (inputValue.trim()) {
       setMessages((prevMessages) => [
@@ -262,7 +285,8 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
       // walletHealth();
       // checkGas();
       // showTokens();
-      showTransfers();
+      // showTransfers();
+      showTransaction();
       setInputValue("");
     }
   };
