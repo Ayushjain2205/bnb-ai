@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// Utility function to generate dates and random data
+// Utility function to generate dates and random data remains unchanged
 const generateData = (days, functions) => {
   let data = [];
   for (let i = days - 1; i >= 0; i--) {
@@ -28,7 +28,14 @@ const generateData = (days, functions) => {
 };
 
 const EventCharts = () => {
-  const data = generateData(10, ["mint", "burn", "transfer"]);
+  // Initialize state to hold the data
+  const [data, setData] = useState([]);
+
+  // useEffect to set the data only once on mount
+  useEffect(() => {
+    const generatedData = generateData(10, ["mint", "burn", "transfer"]);
+    setData(generatedData);
+  }, []); // The empty array ensures this effect only runs once on mount
 
   return (
     <div style={{ width: "100%", height: 400 }}>
@@ -50,7 +57,6 @@ const EventCharts = () => {
               position: "insideLeft",
               style: {
                 fontSize: "18px",
-
                 color: "#666666",
               },
             }}

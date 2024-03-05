@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -24,7 +24,14 @@ const generateLastNDays = (n) => {
 };
 
 const TransactionsChart = () => {
-  const data = generateLastNDays(20);
+  // Initialize state with empty array
+  const [data, setData] = useState([]);
+
+  // useEffect to generate and set data only once on component mount
+  useEffect(() => {
+    const generatedData = generateLastNDays(20);
+    setData(generatedData);
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   return (
     <div className="h-[400px]">
@@ -45,10 +52,10 @@ const TransactionsChart = () => {
               angle: -90,
               position: "insideLeft",
               style: {
-                fontSize: "18px", // Increase font size here
+                fontSize: "18px",
                 textAnchor: "middle",
               },
-              dx: -15, // Adjust gap from Y-axis by shifting label to the left
+              dx: -15, // Adjust the gap from Y-axis by shifting label to the left
             }}
           />
           <Tooltip />
