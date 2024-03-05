@@ -28,14 +28,20 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
   const mintingMessages = [
     {
       text: "Hey, sure. Let’s generate a NFT for you. Enter a prompt for your NFT.",
-      ChildComponent: null,
+      ChildComponent: TranscationsChart,
     },
     {
       text: "Here is your NFT. Enter **MINT** to Confirm NFT",
-      ChildComponent: GenerateNFT,
+      ChildComponent: EventCharts,
     },
-    { text: "Input Name : '' & Price : '' for your NFT", ChildComponent: null },
-    { text: "Yayyy, you just minted a NFT!", ChildComponent: DisplayNFT },
+    {
+      text: "Input Name : '' & Price : '' for your NFT",
+      ChildComponent: MyContracts,
+    },
+    {
+      text: "Yayyy, you just minted a NFT!",
+      ChildComponent: MyCustomComponent,
+    },
   ];
 
   const messagesEndRef = useRef(null);
@@ -82,108 +88,6 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
     }
   };
 
-  const smartContract = () => {
-    const relatedPrompts = [
-      { prompt: "Generate a ERC 1155 smart contract" },
-      { prompt: "Generate a ERC 721 smart contract" },
-    ];
-    const resources = [
-      { name: "How does a smart contract work?" },
-      { name: "What is Solidity?" },
-      { name: "How to deploy a smart contract?" },
-    ];
-
-    // Set loading to true to show the loader
-    setLoading(true);
-
-    setTimeout(() => {
-      // Update the messages
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        {
-          sender: "ai",
-          text: "To create an ERC-20 token called **Boba Coin** for deployment on the XinFin Network (XDC) blockchain, you'll need to write a Solidity smart contract. Below is a basic example of a Solidity smart contract for an ERC-20 token. You can customize and expand upon it as needed:",
-          showResource: true,
-          showPrompt: true,
-          relatedPrompts: relatedPrompts,
-          resources: resources,
-          ChildComponent: SmartContract,
-        },
-      ]);
-
-      // Set loading to false to hide the loader
-      setLoading(false);
-    }, 5000); // 5000ms = 5 seconds
-  };
-
-  const dev = async (userMessage) => {
-    const relatedPrompts = [
-      { prompt: "How to connect to XDC Blockchain" },
-      { prompt: "How to deploy a smart contract?" },
-    ];
-    const resources = [
-      { name: "XDC Docs" },
-      { name: "Decrypt.co" },
-      { name: "Thirdweb" },
-    ];
-    try {
-      setLoading(true);
-      const response = await fetch("/api/getAnswer", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ query: userMessage }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          {
-            sender: "ai",
-            text: data.message,
-            showResource: true,
-            showPrompt: true,
-            relatedPrompts: relatedPrompts,
-            resources: resources,
-            ChildComponent: null,
-          },
-        ]);
-      } else {
-        console.error("API request failed", await response.text());
-      }
-    } catch (error) {
-      console.error("An error occurred", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const graph = () => {
-    // Activate the loader
-    setLoading(true);
-
-    // Use setTimeout to introduce a delay
-    setTimeout(() => {
-      // Update the messages
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        {
-          sender: "ai",
-          text: "This is a graphical representation of XDC token performance in the past one month.",
-          showResource: false,
-          showPrompt: false,
-          ChildComponent: Graph,
-        },
-      ]);
-
-      // Deactivate the loader
-      setLoading(false);
-    }, 3000); // 4000ms = 4 seconds
-  };
-
   const walletHealth = () => {
     // Activate the loader
     setLoading(true);
@@ -198,7 +102,7 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
           text: "Let's check your wallet health!",
           showResource: false,
           showPrompt: false,
-          ChildComponent: MyCustomComponent,
+          ChildComponent: EventCharts,
         },
       ]);
 
@@ -213,11 +117,10 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
         ...prevMessages,
         { sender: "user", text: inputValue },
       ]);
-      // dev(inputValue);
-      //mintNFT();
-      //smartContract();
-      //graph();
-      walletHealth();
+
+      mintNFT();
+
+      // walletHealth();
       setInputValue("");
     }
   };

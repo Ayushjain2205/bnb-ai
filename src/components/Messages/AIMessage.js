@@ -30,7 +30,7 @@ const AIMessage = ({
           className="flex flex-col items-center justify-center h-[36px] w-[36px] rounded-[100px] flex-shrink-0"
           style={{ backgroundColor: backgroundColor }}
         >
-          <img src="/icons/tron.svg" className="h-[16px] w-[16px]" alt="AI" />
+          <img src="/icons/bnb.svg" className="h-[24px] w-[24px]" alt="AI" />
         </div>
         <div className="flex flex-col gap-[12px] flex-grow">
           {/* <ReactMarkdown className="text-[16px]">
