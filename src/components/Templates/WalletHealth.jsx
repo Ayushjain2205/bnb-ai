@@ -5,11 +5,11 @@ const WalletHealth = () => {
     <div className="w-full flex flex-col gap-[16px]">
       <div className="flex flex-row justify-between">
         <span className="text-black text-[20px]">Balance</span>
-        <span className="font-bold text-[20px] text-[#07adcd]">759 XDC</span>
+        <span className="font-bold text-[20px] text-[#F3BA2F]">1.09 BNB</span>
       </div>
       <div className="flex flex-row justify-between">
         <span className="text-black text-[20px]">Portfolio</span>
-        <span className=" font-bold text-[20px] text-[#07adcd]">$51</span>
+        <span className=" font-bold text-[20px] text-[#F3BA2F]">$51</span>
       </div>
       <div className="flex flex-row  justify-between">
         <span className="text-black text-[20px]">Health score</span>

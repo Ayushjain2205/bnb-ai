@@ -11,7 +11,7 @@ const GoldrushTemplate = ({ children }) => {
       color={mode === "light" ? "yellow" : "slate"}
       border_radius=" full"
     >
-      <div>{children}</div>
+      <div className="flex">{children}</div>
     </GoldRushProvider>
   );
 };

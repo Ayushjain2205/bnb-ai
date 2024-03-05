@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  TokenBalancesListView,
-  TokenTransfersListView,
-  AddressActivityListView,
-  NFTWalletTokenListView,
-  TransactionReceiptView,
-  GasCard,
-} from "@covalenthq/goldrush-kit";
+import { TokenBalancesListView } from "@covalenthq/goldrush-kit";
 import GoldrushTemplate from "../Functional/GoldrushTemplate";
 
-const TokenList = () => {
+const TokenList = React.memo(() => {
   return (
     <GoldrushTemplate>
       <TokenBalancesListView
@@ -18,6 +11,6 @@ const TokenList = () => {
       />
     </GoldrushTemplate>
   );
-};
+});
 
 export default TokenList;

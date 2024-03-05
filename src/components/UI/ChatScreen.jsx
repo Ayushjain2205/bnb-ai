@@ -23,9 +23,26 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
   const { mode } = useContext(ModeContext);
 
   const [loading, setLoading] = useState(false);
-  const [mintMessageIndex, setMintMessageIndex] = useState(0);
+  const [devMessageIndex, setdevMessageIndex] = useState(0);
+  const [analyticsMessageIndex, setAnalyticsMessageIndex] = useState(0);
 
-  const mintingMessages = [
+  const devMessage = [
+    {
+      text: "Hey, sure. Let’s generate a NFT for you. Enter a prompt for your NFT.",
+      ChildComponent: TranscationsChart,
+    },
+    {
+      text: "Here is your NFT. Enter **MINT** to Confirm NFT",
+      ChildComponent: EventCharts,
+    },
+    {
+      text: "Input Name : '' & Price : '' for your NFT",
+      ChildComponent: MyContracts,
+    },
+    {
+      text: "Yayyy, you just minted a NFT!",
+      ChildComponent: MyCustomComponent,
+    },
     {
       text: "Hey, sure. Let’s generate a NFT for you. Enter a prompt for your NFT.",
       ChildComponent: TranscationsChart,
@@ -44,6 +61,29 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
     },
   ];
 
+  const analyticsMessage = [
+    {
+      text: "Let's check your wallet health!",
+      ChildComponent: WalletHealth,
+    },
+    {
+      text: "Here are the token transfers",
+      ChildComponent: TokenList,
+    },
+    {
+      text: "Here is the transaction receipt",
+      ChildComponent: TokenTransfers,
+    },
+    {
+      text: "Here is the gas card",
+      ChildComponent: Gas,
+    },
+    {
+      text: "Here is the transaction receipt",
+      ChildComponent: TransactionReceipt,
+    },
+  ];
+
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -58,9 +98,9 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
       : "#35363B"
     : "#E7E9EB";
 
-  const mintNFT = () => {
+  const devMode = () => {
     // Check to avoid index out of bound
-    if (mintMessageIndex < mintingMessages.length) {
+    if (devMessageIndex < devMessage.length) {
       setLoading(true);
 
       setTimeout(() => {
@@ -69,15 +109,15 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
           ...prevMessages,
           {
             sender: "ai",
-            text: mintingMessages[mintMessageIndex].text,
+            text: devMessage[devMessageIndex].text,
             showResource: false,
             showPrompt: false,
-            ChildComponent: mintingMessages[mintMessageIndex].ChildComponent,
+            ChildComponent: devMessage[devMessageIndex].ChildComponent,
           },
         ]);
 
         // Increment the message index for the next interaction
-        setMintMessageIndex((prevIndex) => prevIndex + 1);
+        setdevMessageIndex((prevIndex) => prevIndex + 1);
 
         // Deactivate the loader
         setLoading(false);
@@ -85,6 +125,36 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
     } else {
       // Optionally, reset the minting process or handle completion logic here
       console.log("Minting process complete!");
+    }
+  };
+
+  const analyticsMode = () => {
+    // Check to avoid index out of bounds
+    if (analyticsMessageIndex < analyticsMessage.length) {
+      setLoading(true);
+
+      setTimeout(() => {
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            sender: "ai",
+            text: analyticsMessage[analyticsMessageIndex].text,
+            showResource: false,
+            showPrompt: false,
+            ChildComponent:
+              analyticsMessage[analyticsMessageIndex].ChildComponent,
+          },
+        ]);
+
+        // Increment the message index for the next interaction
+        setAnalyticsMessageIndex((prevIndex) => prevIndex + 1);
+
+        // Deactivate the loader
+        setLoading(false);
+      }, 2000); // Adjust delay as needed
+    } else {
+      // Handle completion logic for analytics mode
+      console.log("Analytics review complete!");
     }
   };
 
@@ -102,7 +172,53 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
           text: "Let's check your wallet health!",
           showResource: false,
           showPrompt: false,
-          ChildComponent: EventCharts,
+          ChildComponent: WalletHealth,
+        },
+      ]);
+
+      // Deactivate the loader
+      setLoading(false);
+    }, 4000); // 4000ms = 4 seconds
+  };
+
+  const checkGas = () => {
+    // Activate the loader
+    setLoading(true);
+
+    // Use setTimeout to introduce a delay
+    setTimeout(() => {
+      // Update the messages
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          sender: "ai",
+          text: "The gas fees on the Network is currently high!",
+          showResource: false,
+          showPrompt: false,
+          ChildComponent: Gas,
+        },
+      ]);
+
+      // Deactivate the loader
+      setLoading(false);
+    }, 4000); // 4000ms = 4 seconds
+  };
+
+  const showTokens = () => {
+    // Activate the loader
+    setLoading(true);
+
+    // Use setTimeout to introduce a delay
+    setTimeout(() => {
+      // Update the messages
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          sender: "ai",
+          text: "The gas fees on the Network is currently high!",
+          showResource: false,
+          showPrompt: false,
+          ChildComponent: TokenList,
         },
       ]);
 
@@ -118,9 +234,11 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
         { sender: "user", text: inputValue },
       ]);
 
-      mintNFT();
-
+      // devMode();
+      // analyticsMode();
       // walletHealth();
+      // checkGas();
+      showTokens();
       setInputValue("");
     }
   };
