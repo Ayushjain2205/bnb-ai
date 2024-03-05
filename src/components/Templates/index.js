@@ -8,6 +8,7 @@ import Gas from "./GasCard";
 import TokenTransfers from "./TokenTransfers";
 import TransactionReceipt from "./TransactionReceipt";
 import TranscationsChart from "./TranscationsChart";
+import EventCharts from "./EventCharts";
 
 export {
   DisplayNFT,
@@ -20,4 +21,5 @@ export {
   TokenTransfers,
   TransactionReceipt,
   TranscationsChart,
+  EventCharts,
 };
