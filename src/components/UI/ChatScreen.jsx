@@ -11,6 +11,7 @@ import {
   Gas,
   TokenTransfers,
   TransactionReceipt,
+  TranscationsChart,
 } from "../Templates";
 import Loader from "../Functional/Loader";
 import { ModeContext } from "../../contexts/ModeContext";
@@ -194,7 +195,7 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
           text: "Let's check your wallet health!",
           showResource: false,
           showPrompt: false,
-          ChildComponent: TransactionReceipt,
+          ChildComponent: TranscationsChart,
         },
       ]);
 
