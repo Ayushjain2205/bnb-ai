@@ -215,10 +215,33 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
         ...prevMessages,
         {
           sender: "ai",
-          text: "The gas fees on the Network is currently high!",
+          text: "The tokens held by the specified account are:",
           showResource: false,
           showPrompt: false,
           ChildComponent: TokenList,
+        },
+      ]);
+
+      // Deactivate the loader
+      setLoading(false);
+    }, 4000); // 4000ms = 4 seconds
+  };
+
+  const showTransfers = () => {
+    // Activate the loader
+    setLoading(true);
+
+    // Use setTimeout to introduce a delay
+    setTimeout(() => {
+      // Update the messages
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          sender: "ai",
+          text: "The transaction history for the specified address is as follows, feel free to filter by the given parameters",
+          showResource: false,
+          showPrompt: false,
+          ChildComponent: TokenTransfers,
         },
       ]);
 
@@ -238,7 +261,8 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
       // analyticsMode();
       // walletHealth();
       // checkGas();
-      showTokens();
+      // showTokens();
+      showTransfers();
       setInputValue("");
     }
   };
