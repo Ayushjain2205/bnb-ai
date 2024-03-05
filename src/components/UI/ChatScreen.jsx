@@ -28,35 +28,19 @@ const ChatScreen = ({ messages, setMessages, inputValue, setInputValue }) => {
 
   const devMessage = [
     {
-      text: "Hey, sure. Let’s generate a NFT for you. Enter a prompt for your NFT.",
+      text: "Hey, sure. Here is the visualisation you requested! Click on the chart to view the details.",
       ChildComponent: TranscationsChart,
     },
     {
-      text: "Here is your NFT. Enter **MINT** to Confirm NFT",
+      text: "Here is the breakup of all the events that were called.",
       ChildComponent: EventCharts,
     },
     {
-      text: "Input Name : '' & Price : '' for your NFT",
+      text: "Here are your deployed smart contracts, characterised by Token type BEP20, ERC721, ERC1155.",
       ChildComponent: MyContracts,
     },
     {
-      text: "Yayyy, you just minted a NFT!",
-      ChildComponent: MyCustomComponent,
-    },
-    {
-      text: "Hey, sure. Let’s generate a NFT for you. Enter a prompt for your NFT.",
-      ChildComponent: TranscationsChart,
-    },
-    {
-      text: "Here is your NFT. Enter **MINT** to Confirm NFT",
-      ChildComponent: EventCharts,
-    },
-    {
-      text: "Input Name : '' & Price : '' for your NFT",
-      ChildComponent: MyContracts,
-    },
-    {
-      text: "Yayyy, you just minted a NFT!",
+      text: "Here are your deployed smart contracts characterised smart contract category along with event breakdown!",
       ChildComponent: MyCustomComponent,
     },
   ];
